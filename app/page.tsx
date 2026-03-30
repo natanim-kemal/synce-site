@@ -204,7 +204,7 @@ export default function Home() {
   return (
     <main className="h-screen md:overflow-hidden bg-black text-white">
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-[#333] bg-black/80 md:h-20 transition-all">
-        <div className="md:hidden flex justify-between items-center px-2 py-4">
+        <div className="md:hidden flex justify-between items-center px-6 py-4">
           <h1 className="text-lg font-bold flex items-center gap-2">
             <img src="/synce.png" alt="Synce Logo" className="w-8 h-8 rounded-lg" />
             Synce
