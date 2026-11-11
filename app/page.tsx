@@ -10,8 +10,28 @@ const TABS = [
   { id: 'download', label: 'DOWNLOAD' }
 ];
 
+const RELEASES_URL = 'https://github.com/natanim-kemal/synce/releases/latest';
+
+type Downloads = { windows: string; android: string; version: string | null };
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState('home');
+  const [downloads, setDownloads] = useState<Downloads>({ windows: '', android: '', version: null });
+
+  useEffect(() => {
+    fetch('https://api.github.com/repos/natanim-kemal/synce/releases/latest')
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error('no release'))))
+      .then((release) => {
+        const assets: { name: string; browser_download_url: string }[] = release.assets ?? [];
+        const find = (pattern: RegExp) => assets.find((asset) => pattern.test(asset.name))?.browser_download_url ?? '';
+        setDownloads({
+          windows: find(/windows.*\.zip$/i),
+          android: find(/android.*\.apk$/i),
+          version: release.tag_name ?? null,
+        });
+      })
+      .catch(() => setDownloads({ windows: '', android: '', version: null }));
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,8 +119,8 @@ export default function Home() {
             </div>
             <h3 className="text-xl font-bold mb-3">Secure & Private</h3>
             <p className="text-neutral-300 leading-relaxed">
-              End-to-end encryption ensures your documents stay private.
-              Your data is secure with enterprise-grade protection.
+              Encrypted in transit over TLS and at rest in AWS S3.
+              Only devices signed into your account can fetch your documents.
             </p>
           </div>
 
@@ -182,7 +202,9 @@ export default function Home() {
 
         <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
           <a
-            href="#"
+            href={downloads.windows || RELEASES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 p-6 rounded-xl border border-white/20 hover:bg-white/5 transition-all backdrop-blur-sm group"
           >
             <Download className="w-5 h-5" />
@@ -190,13 +212,19 @@ export default function Home() {
           </a>
 
           <a
-            href="#"
+            href={downloads.android || RELEASES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 p-6 rounded-xl border border-white/20 hover:bg-white/5 transition-all backdrop-blur-sm group"
           >
             <Download className="w-5 h-5" />
             <span className="font-semibold">Android</span>
           </a>
         </div>
+
+        <p className="mt-6 text-sm text-neutral-500">
+          {downloads.version ? `Latest release ${downloads.version}` : 'Releases are published on GitHub'}
+        </p>
       </div>
     </section>
   );
