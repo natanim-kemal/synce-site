@@ -25,7 +25,7 @@ export default function Home() {
         const assets: { name: string; browser_download_url: string }[] = release.assets ?? [];
         const find = (pattern: RegExp) => assets.find((asset) => pattern.test(asset.name))?.browser_download_url ?? '';
         setDownloads({
-          windows: find(/windows.*\.zip$/i),
+          windows: find(/windows.*\.(exe|zip)$/i),
           android: find(/android.*\.apk$/i),
           version: release.tag_name ?? null,
         });
