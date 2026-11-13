@@ -17,7 +17,8 @@ export const metadata: Metadata = {
   title: "Synce - PDF Sync Made Simple",
   description: "A mobile and desktop app for syncing PDF files between devices. Built with Flutter and NestJS.",
   icons: {
-    icon: "/synce.svg",
+    icon: [{ url: "/app-icon.png", type: "image/png", sizes: "512x512" }],
+    apple: "/app-icon.png",
   },
 };
 
