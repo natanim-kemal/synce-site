@@ -1,44 +1,112 @@
 @import "tailwindcss";
 
-:root {
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --background: #f7f9fc;
+  --foreground: #0f172a;
+
+  --ink: #0f172a;
+  --muted: #475569;
+  --subtle: #64748b;
+  --faint: #94a3b8;
+
+  --fill: rgba(255, 255, 255, 0.75);
+  --fill-hover: rgba(255, 255, 255, 0.55);
+  --chrome: rgba(255, 255, 255, 0.72);
+  --line: rgba(15, 23, 42, 0.12);
+  --line-soft: rgba(15, 23, 42, 0.08);
+
+  --brand: #2563eb;
+  --btn-bg: #0f172a;
+  --btn-fg: #ffffff;
+  --btn-shadow: rgba(15, 23, 42, 0.18);
+
+  --heading-from: #0f172a;
+  --heading-to: #475569;
+
+  --card-shadow: 0 10px 40px -12px rgba(15, 23, 42, 0.18);
+
+  --glow:
+    radial-gradient(ellipse 80% 55% at 50% -5%, rgba(255, 255, 255, 0.95) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 40% at 12% 15%, rgba(191, 219, 254, 0.55) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 45% at 88% 10%, rgba(224, 242, 254, 0.6) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 95%, rgba(226, 232, 240, 0.7) 0%, transparent 60%);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
   --background: #000000;
   --foreground: #ffffff;
+
+  --ink: #ffffff;
+  --muted: #d4d4d4;
+  --subtle: #a3a3a3;
+  --faint: #737373;
+
+  --fill: rgba(255, 255, 255, 0.1);
+  --fill-hover: rgba(255, 255, 255, 0.05);
+  --chrome: rgba(0, 0, 0, 0.8);
+  --line: #333333;
+  --line-soft: rgba(255, 255, 255, 0.1);
+
+  --brand: #3b82f6;
+  --btn-bg: #ffffff;
+  --btn-fg: #000000;
+  --btn-shadow: rgba(255, 255, 255, 0.2);
+
+  --heading-from: #ffffff;
+  --heading-to: #a3a3a3;
+
+  --card-shadow: none;
+
+  --glow: radial-gradient(ellipse at top,
+      rgba(99, 102, 241, 0.15) 0%,
+      rgba(213, 185, 185, 0.1) 30%,
+      transparent 60%);
 }
 
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-faint: var(--faint);
+  --color-fill: var(--fill);
+  --color-fill-hover: var(--fill-hover);
+  --color-chrome: var(--chrome);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-brand: var(--brand);
+  --color-btn-bg: var(--btn-bg);
+  --color-btn-fg: var(--btn-fg);
+  --color-btn-shadow: var(--btn-shadow);
+  --color-heading-from: var(--heading-from);
+  --color-heading-to: var(--heading-to);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
-
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  /* zoom: 0.7; */
 }
 
-@media (min-width: 1024px) {
-  html {
-    zoom: 0.8;
-  }
+html {
+  zoom: 0.9;
 }
 
-/* Subtle radial glow effect */
 body::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at top,
-      rgba(99, 102, 241, 0.15) 0%,
-      rgba(213, 185, 185, 0.1) 30%,
-      transparent 60%);
+  inset: 0;
+  background: var(--glow);
   pointer-events: none;
   z-index: -1;
 }

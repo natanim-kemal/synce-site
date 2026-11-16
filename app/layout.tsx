@@ -22,16 +22,19 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `try{var t=localStorage.getItem('synce-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:'light'}catch(e){document.documentElement.dataset.theme='light'}`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
         <Analytics />
       </body>
