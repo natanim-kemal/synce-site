@@ -683,9 +683,9 @@ a {
 .book-grid span {
   position: relative;
   display: grid;
-  place-items: end center;
-  min-height: 128px;
-  padding: 14px 12px;
+  place-items: center;
+  min-height: 74px;
+  padding: 12px;
   border-right: 1px dashed var(--line-soft);
   border-bottom: 1px dashed var(--line-soft);
   color: var(--ink);
@@ -703,16 +703,8 @@ a {
   inset: 0;
   z-index: -1;
   background: var(--cover) center / cover no-repeat;
-  opacity: 0.5;
-}
-
-.book-grid b {
-  padding: 5px 9px;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 1px 4px rgba(38, 38, 43, 0.06);
-  font-weight: 600;
-  line-height: 1.25;
+  opacity: 0.3;
+  filter: grayscale(1);
 }
 
 .features {
@@ -1131,11 +1123,6 @@ a {
     border-left: 0;
     border-top: 1px solid var(--line-soft);
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .book-grid span {
-    min-height: 112px;
-    padding: 10px 8px;
   }
 
   .features,
