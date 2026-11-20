@@ -229,9 +229,7 @@ export default async function Home() {
               <span
                 key={book.title}
                 style={{ '--cover': `url(/books/${book.cover}.jpg)` } as React.CSSProperties}
-              >
-                <b>{book.title}</b>
-              </span>
+              />
             ))}
           </div>
         </div>
