@@ -43,7 +43,7 @@ function BookCovers() {
       {BOOKS.map((book) => (
         <span
           key={book.title}
-          style={{ '--cover': `url(/books/${book.cover}.jpg)` } as React.CSSProperties}
+          style={{ '--cover': `url(/books/${book.cover}.webp)` } as React.CSSProperties}
         />
       ))}
     </div>
