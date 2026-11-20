@@ -3,7 +3,6 @@ import {
   ArrowUpRight,
   Check,
   Download,
-  FileText,
   Layers3,
   Monitor,
   MousePointer2,
@@ -85,7 +84,8 @@ function DeviceStage() {
           <div className="phone-app">
             <img src="/synce.png" alt="" />
             <span>Synce</span>
-            <Check size={12} color="#285df5" style={{ marginLeft: 'auto' }} />
+            <span className="phone-sync-arrow"><RefreshCw size={12} strokeWidth={2} /></span>
+            <span className="tap-cursor"><MousePointer2 size={12} fill="currentColor" /></span>
           </div>
           <div className="phone-files">
             <p className="pc-title">Library</p>
@@ -103,19 +103,12 @@ function DeviceStage() {
             </div>
           </div>
           <div className="sync-control">
-            <span className="sync-ring" />
-            <span className="sync-btn"><RefreshCw size={12} strokeWidth={2} /></span>
-            <span className="tap-cursor"><MousePointer2 size={12} fill="currentColor" /></span>
+            <span className="synced-tick"><Check size={12} strokeWidth={2.6} /></span>
           </div>
           <span className="sync-note">Synced just now</span>
         </div>
       </div>
 
-      <span className="package">
-        <FileText size={12} color="#ef4444" />
-        systems-design.pdf
-      </span>
-      <span className="pulse" />
     </div>
   );
 }
