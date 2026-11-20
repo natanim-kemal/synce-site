@@ -18,18 +18,18 @@ type Asset = { name: string; size: number; url: string };
 type Downloads = { windows: Asset[]; android: Asset[]; version: string | null };
 
 const BOOKS = [
-  'Design Patterns',
-  'Clean Code',
-  'The Pragmatic Programmer',
-  'Introduction to Algorithms',
-  'Computer Networks',
-  'The Mythical Man Month',
-  'The Art of Computer Programming',
-  'Compilers',
-  'Database Systems',
-  'Deep Work',
-  'Atomic Habits',
-  'Thinking Fast and Slow',
+  { title: 'Design Patterns', cover: 'design-patterns' },
+  { title: 'Clean Code', cover: 'clean-code' },
+  { title: 'The Pragmatic Programmer', cover: 'pragmatic-programmer' },
+  { title: 'Introduction to Algorithms', cover: 'introduction-to-algorithms' },
+  { title: 'Computer Networks', cover: 'computer-networks' },
+  { title: 'The Mythical Man Month', cover: 'mythical-man-month' },
+  { title: 'The Art of Computer Programming', cover: 'art-of-computer-programming' },
+  { title: 'Compilers', cover: 'compilers' },
+  { title: 'Database Systems', cover: 'database-systems' },
+  { title: 'Deep Work', cover: 'deep-work' },
+  { title: 'Atomic Habits', cover: 'atomic-habits' },
+  { title: 'Thinking Fast and Slow', cover: 'thinking-fast-and-slow' },
 ];
 
 function formatSize(bytes: number) {
@@ -225,7 +225,14 @@ export default async function Home() {
             From algorithms to atomic habits, the documents you actually keep stay together.
           </div>
           <div className="book-grid">
-            {BOOKS.map((book) => <span key={book}>{book}</span>)}
+            {BOOKS.map((book) => (
+              <span
+                key={book.title}
+                style={{ '--cover': `url(/books/${book.cover}.jpg)` } as React.CSSProperties}
+              >
+                <b>{book.title}</b>
+              </span>
+            ))}
           </div>
         </div>
       </div>
