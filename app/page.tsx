@@ -6,6 +6,8 @@ import {
   FileText,
   Layers3,
   Monitor,
+  MousePointer2,
+  RefreshCw,
   ShieldCheck,
   Smartphone,
   WifiOff,
@@ -85,14 +87,27 @@ function DeviceStage() {
             <span>Synce</span>
             <Check size={12} color="#285df5" style={{ marginLeft: 'auto' }} />
           </div>
-          <div className="phone-card">
-            <small>Most recent</small>
-            <b>systems-design.pdf</b>
+          <div className="phone-files">
+            <p className="pc-title">Library</p>
+            <div className="file-row is-active">
+              <span className="pdf-dot">PDF</span>
+              <b>systems-design.pdf</b>
+            </div>
+            <div className="file-row">
+              <span className="pdf-dot">PDF</span>
+              <span>readings-2026.pdf</span>
+            </div>
+            <div className="file-row">
+              <span className="pdf-dot">PDF</span>
+              <span>architecture-notes.pdf</span>
+            </div>
           </div>
-          <div className="phone-hint">
-            <i>↗</i>
-            <span>Ready to read offline</span>
+          <div className="sync-control">
+            <span className="sync-ring" />
+            <span className="sync-btn"><RefreshCw size={12} strokeWidth={2} /></span>
+            <span className="tap-cursor"><MousePointer2 size={12} fill="currentColor" /></span>
           </div>
+          <span className="sync-note">Synced just now</span>
         </div>
       </div>
 
