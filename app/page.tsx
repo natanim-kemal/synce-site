@@ -37,6 +37,19 @@ function formatSize(bytes: number) {
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
 
+function BookCovers() {
+  return (
+    <div className="book-bg" aria-hidden="true">
+      {BOOKS.map((book) => (
+        <span
+          key={book.title}
+          style={{ '--cover': `url(/books/${book.cover}.jpg)` } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
 function DeviceStage() {
   return (
     <div className="stage" aria-label="A PDF moving from a desktop computer to a phone">
@@ -200,6 +213,7 @@ export default async function Home() {
       </nav>
 
       <section className="hero" id="home">
+        <BookCovers />
         <div className="wrap hero-grid">
           <div className="reveal">
             <h1>Every PDF,<br /><span>on every device.</span></h1>
@@ -218,27 +232,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="compat">
-        <div className="wrap compat-inner">
-          <div className="compat-note">
-            <b>A whole library, one quiet place.</b>
-            From algorithms to atomic habits, the documents you actually keep stay together.
-          </div>
-          <div className="book-grid">
-            {BOOKS.map((book) => (
-              <span
-                key={book.title}
-                style={{ '--cover': `url(/books/${book.cover}.jpg)` } as React.CSSProperties}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
       <section className="features" id="features">
         <div className="wrap">
           <h2 className="statement reveal">
-            We did the hard work of <em>keeping your PDFs together</em>,
+            I did the hard work of <em>keeping your PDFs in sync</em>,
             <span className="grey"> so you never have to think about it again.</span>
           </h2>
           <div className="feature-grid">
@@ -336,6 +333,7 @@ export default async function Home() {
       </section>
 
       <footer className="footer">
+        <BookCovers />
         <div className="wrap">
           <div className="footer-grid">
             <div className="footer-brand">
