@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Inter_Tight({
+  variable: "--font-display-face",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const body = Inter({
+  variable: "--font-body-face",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Synce - PDF Sync Made Simple",
-  description: "A mobile and desktop app for syncing PDF files between devices. Built with Flutter and NestJS.",
+  title: "Synce - Every PDF, on every device",
+  description:
+    "Synce keeps your PDFs in step across Android and Windows. Save once, read anywhere, stay offline ready.",
   icons: {
     icon: [{ url: "/app-icon.png", type: "image/png", sizes: "512x512" }],
     apple: "/app-icon.png",
   },
 };
-
-const themeScript = `try{var t=localStorage.getItem('synce-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:'light'}catch(e){document.documentElement.dataset.theme='light'}`;
 
 export default function RootLayout({
   children,
@@ -30,14 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        {children}
-        <Analytics />
-      </body>
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <body>{children}</body>
+      <Analytics />
     </html>
   );
 }
